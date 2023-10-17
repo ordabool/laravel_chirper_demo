@@ -8,6 +8,7 @@ services:
     volumes:
       - "./chirper_demo/chirper:/chirper"
       - "/chirper/vendor"
+      - "/chirper/node_modules"
     ports:
       - 3000:8000
 
