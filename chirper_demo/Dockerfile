@@ -17,8 +17,18 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
 COPY ./chirper /chirper/
 WORKDIR /chirper
 
+# Install NodeJS + NPM + Vite
+RUN apt install libxcb-xinerama0 libxcb-xkb1 libxcb-render-util0 xvfb -y
+RUN apt install npm nodejs vite -y
+
 # Install composer packages
 RUN composer install
+
+# Install Breeze Vue
+RUN php artisan breeze:install vue
+
+# Install npm packages
+RUN npm install
 
 # Install php mysql driver
 RUN docker-php-ext-install mysqli pdo pdo_mysql && docker-php-ext-enable pdo_mysql
