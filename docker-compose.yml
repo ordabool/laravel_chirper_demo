@@ -31,6 +31,13 @@ services:
     environment:
       - PMA_ARBITRARY=1
 
+  mailpit:
+    image: axllent/mailpit
+    restart: unless-stopped
+    ports:
+      - 8025:8025
+      - 1025:1025
+
 volumes:
   chirper_db_data:
     driver: local
